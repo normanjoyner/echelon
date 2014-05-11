@@ -1,0 +1,35 @@
+{
+  "name": "echelon",
+  "version": "0.0.0",
+  "description": "A distributed work queue built on Espial",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/normanjoyner/echelon.git"
+  },
+  "author": "Norman Joyner <norman.joyner@gmail.com>",
+  "license": "GPLv2",
+  "bugs": {
+    "url": "https://github.com/normanjoyner/echelon/issues"
+  },
+  "homepage": "https://github.com/normanjoyner/echelon",
+  "dependencies": {
+    "async": "^0.8.0",
+    "lodash": "^2.4.1",
+    "espial": "^0.2.0"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "espial",
+    "echelon",
+    "distributed",
+    "work",
+    "worker",
+    "queue",
+    "job",
+    "task"
+  ]
+}
