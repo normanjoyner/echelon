@@ -8,6 +8,20 @@ function Echelon(){}
 
 // initialize Echelon
 Echelon.prototype.init = function(options, fn){
+    this.options = _.defaults(options, {
+        espial: {}
+    });
+
+    if(!_.has(this.options.espial, "metadata")){
+        this.options.espial = _.merge(this.options.espial, {
+            metadata: {
+                concurrency: 1
+            }
+        });
+    }
+    else if(!_.has(this.options.espial.metadata, "concurrency"))
+        this.options.espial.metadata.concurrency = 1
+
     queue.init();
     espial.init(this, fn);
 }
