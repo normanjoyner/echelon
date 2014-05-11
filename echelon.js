@@ -25,7 +25,7 @@ Echelon.prototype.remove_handler = function(name){
 // add job to the queue
 Echelon.prototype.add_job = function(job){
     // if we're the master node, add the job to the queue
-    if(this.espial.is_master())
+    if(espial.cluster.is_master())
         queue.push(job);
 
     // if find a master, send the job to them
