@@ -52,7 +52,7 @@ var job = {
     handler: "my_first_handler",
     data: {
         some: "data",
-        can: ["go, "here"]
+        can: ["go", "here"]
     }
 }
 ```
@@ -80,7 +80,7 @@ var job = {
     handler: "my_first_handler",
     data: {
         some: "data",
-        can: ["go, "here"]
+        can: ["go", "here"]
     }
 }
 
