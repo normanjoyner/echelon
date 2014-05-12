@@ -42,10 +42,22 @@ echelon.init(options, function(){
 Echelon serves as a distributed work queue, responsible for performing job processing. The Espial master node is responsible for distributing jobs to worker nodes. The master node **never** processes jobs, but rather manages the job queue, job distribution, and so on. Each node has the ability to specify the number of concurrent jobs it can process during configuration, as seen above. By running a cluster of nodes, a greater amount of jobs can be processed in parallel, significantly reducing processing time. Given that Echelon is a module, it is quite extensible and can be used in a wide variety of applications.
 
 ###Default Handlers
-Echelon comes with two default handlers: ```on_success``` and ```on_failure```. When a job is finished it will execute one of these callbacks dependant upon whether it was successfully processed or not. By default, Echelon simply logs whether the job was successful or not to the console. These handlers can be overriden. More on custom handlers below.
+Echelon comes with two default handlers used on the master node: ```on_success``` and ```on_failure```. When a job is finished it will execute one of these callbacks dependant upon whether it was successfully processed or not. By default, Echelon simply logs whether the job was successful or not to the console. These handlers can be overriden using the ```on_success()``` and ```on_failure()``` methods:
+
+```javascript
+echelon.on_success(function(job, response){
+    console.log(job.uid + " was successful!");
+});
+
+echelon.on_failure(function(job, response){
+    console.log(job.uid + " failed!");
+});
+```
+
+The ```job``` object returned will contain the ```Job``` schema, including the uniquely generated ```uid``` key. The ```response``` object will contain the object returned from the custom handler. More on customer handlers below.
 
 ###Custom Handlers
-Handlers are responsible for performing the work necessary to "complete" a job. The schema of a ```Job``` object contains a ```handler``` key, which specifies which handler to use to process the job. An example job may look like:
+On worker nodes, handlers are responsible for performing the work necessary to "complete" a job. The schema of a ```Job``` object contains a ```handler``` key, which specifies which handler to use to process the job. An example job may look like:
 
 ```javascript
 var job = {
