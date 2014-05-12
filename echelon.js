@@ -56,4 +56,19 @@ Echelon.prototype.add_job = function(job){
         queue.stash(job);
 }
 
+// get number of jobs waiting to be processed
+Echelon.prototype.queue_length = function(){
+    return queue.queue.length();
+}
+
+// determine if queue is idle
+Echelon.prototype.idle_jobs = function(){
+    return queue.queue.idle();
+}
+
+// get number of jobs currently running
+Echelon.prototype.running_jobs = function(){
+    return queue.queue.running();
+}
+
 module.exports = Echelon;
