@@ -17,7 +17,6 @@ Echelon.prototype.init = function(options, fn){
 
     this.options.espial.metadata.concurrency = this.options.concurrency;
 
-    queue.init();
     espial.init(this, fn);
 }
 
@@ -48,12 +47,12 @@ Echelon.prototype.add_job = function(job){
         queue.push(job);
 
     // if find a master, send the job to them
-    else if(!_.isEmpty(this.espial.get_master()))
-        espial.cluster.send("add_job", job, this.espial.get_master());
+    else if(!_.isEmpty(espial.cluster.get_master()))
+        espial.cluster.send("add_job", job, espial.cluster.get_master());
 
     // hold the job until we find a master
     else
-        queue.stash(job);
+        queue.stash.push(job);
 }
 
 // get number of jobs waiting to be processed
